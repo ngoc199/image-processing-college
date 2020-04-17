@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Examples</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      section > div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      section .inputoutput {
+        flex: 1 1;
+        margin: 0 15px;
+      }
+
+      section .inputoutput:first-child {
+        margin-left: 0;
+      }
+
+      section .inputoutput:last-child {
+        margin-right: 0;
+      }
+
+      .inputoutput canvas {
+        width: 100%;
+        border: 1px solid black;
+      }
+
+      .inputoutput img {
+        max-width: 100%;
+      }
+
+      .inputoutput strong {
+        display: block;
+        text-align: center;
+      }
+
+      .btn_primary {
+        background-color: rgb(61, 61, 223);
+        color: #ffffff;
+        margin-bottom: 15px;
+        padding: 0.4rem 1rem;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 1rem;
+      }
+
+      .btn_primary:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Changing Colorspaces -->
+    <section>
+      <h2>Chuyển đổi không gian màu</h2>
+      <p>
+        Chuyển đổi ảnh từ không gian màu ban đầu (RGB) sang không gian màu đen
+        trắng (Gray)
+      </p>
+      <button onclick="convertColor()" class="btn_primary">Thử ngay</button>
+      <div>
+        <div class="inputoutput">
+          <img src="./image.jpg" alt="bird" id="canvas_input" />
+          <strong>Canvas Input</strong>
+        </div>
+        <div class="inputoutput">
+          <canvas id="canvas_output_convert_color"></canvas>
+          <strong>Canvas Output</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Geometric Transformation of Image (Rotate) -->
+    <section>
+      <h2>Xoay hình ảnh</h2>
+      <p>Xoay hình ảnh ban đầu theo 1 góc 45 độ theo chiều kim đồng hồ</p>
+      <button onclick="rotateImage()" class="btn_primary">Thử ngay</button>
+      <div>
+        <div class="inputoutput">
+          <img src="./image.jpg" alt="bird" />
+          <strong>Canvas Input</strong>
+        </div>
+        <div class="inputoutput">
+          <canvas id="canvas_output_rotate_image"></canvas>
+          <strong>Canvas Output</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Image Thresholding (Simple Thresholding) -->
+    <section>
+      <h2>Ngưỡng ảnh</h2>
+      <p>Lọc ảnh theo 1 ngưỡng nhất định</p>
+      <button onclick="imageThresholding()" class="btn_primary">
+        Thử ngay
+      </button>
+      <div>
+        <div class="inputoutput">
+          <img src="./image.jpg" alt="bird" />
+          <strong>Canvas Input</strong>
+        </div>
+        <div class="inputoutput">
+          <canvas id="canvas_output_image_thresholding"></canvas>
+          <strong>Canvas Output</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Smoothing Images (Bilateral Filtering) -->
+    <section>
+      <h2>Làm mượt ảnh</h2>
+      <p>Làm mượt ảnh bằng cách trộn những màu gần giống nhau ở lân cận nhau</p>
+      <button onclick="bilateralFiltering()" class="btn_primary">
+        Thử ngay
+      </button>
+      <div>
+        <div class="inputoutput">
+          <img src="./image.jpg" alt="bird" />
+          <strong>Canvas Input</strong>
+        </div>
+        <div class="inputoutput">
+          <canvas id="canvas_output_bilateral_filter"></canvas>
+          <strong>Canvas Output</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Morphological Transformation (Erosion) -->
+    <section>
+      <h2>Biến đổi hình thái ảnh</h2>
+      <p>
+        Biến đổi hình thái ảnh từ ảnh nhị phân (binary) bằng phương pháp xói mòn
+      </p>
+      <button onclick="erosion()" class="btn_primary">
+        Thử ngay
+      </button>
+      <div>
+        <div class="inputoutput">
+          <img src="./image.jpg" alt="bird" />
+          <strong>Original Image</strong>
+        </div>
+        <div class="inputoutput">
+          <canvas id="canvas_input_erosion"></canvas>
+          <strong>Canvas Input</strong>
+        </div>
+        <div class="inputoutput">
+          <canvas id="canvas_output_erosion"></canvas>
+          <strong>Canvas Output</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Image Gradients (Laplacian) -->
+    <section>
+      <h2>Image Gradients</h2>
+      <p>Tính Laplacian của hình ảnh</p>
+      <button onclick="laplacian()" class="btn_primary">
+        Thử ngay
+      </button>
+      <div>
+        <div class="inputoutput">
+          <img src="./image.jpg" alt="bird" />
+          <strong>Canvas Input</strong>
+        </div>
+        <div class="inputoutput">
+          <canvas id="canvas_output_laplacian"></canvas>
+          <strong>Canvas Output</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Canny Edge Detection (Canny) -->
+    <section>
+      <h2>Canny Edge Detection</h2>
+      <p>Nhận diện biên bằng thuật toán Canny</p>
+      <button onclick="canny()" class="btn_primary">
+        Thử ngay
+      </button>
+      <div>
+        <div class="inputoutput">
+          <img src="./image.jpg" alt="bird" />
+          <strong>Canvas Input</strong>
+        </div>
+        <div class="inputoutput">
+          <canvas id="canvas_output_canny"></canvas>
+          <strong>Canvas Output</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Image Pyramids (PyrDown) -->
+    <section>
+      <h2>Image Pyramids</h2>
+      <p>Downsample ảnh sử dụng phương thức pyrDown()</p>
+      <button onclick="pyrDown()" class="btn_primary">
+        Thử ngay
+      </button>
+      <div>
+        <div class="inputoutput">
+          <img src="./image.jpg" alt="bird" />
+          <strong>Canvas Input</strong>
+        </div>
+        <div class="inputoutput">
+          <canvas id="canvas_output_pyrdown"></canvas>
+          <strong>Canvas Output</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Load file opencv.js -->
+    <script
+      src="./opencv.js"
+      onload="console.log('opencv.js is loaded')"
+    ></script>
+
+    <!-- Load my JavaScript file -->
+    <script src="./index.js"></script>
+  </body>
+</html>
